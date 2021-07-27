@@ -94,8 +94,8 @@ export const PlayerTile: React.FC<Props> = ({ player }) => {
               )}
               <WrapItem>
                 <MetaTag size="md">{`XP: ${Math.floor(
-                  player.total_xp,
-                )}`}</MetaTag>
+                  player.season_xp,
+                )} (${Math.floor(player.total_xp)})`}</MetaTag>
               </WrapItem>
             </Wrap>
             {tzDisplay?.timeZone ? (

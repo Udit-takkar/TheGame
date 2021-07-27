@@ -33,11 +33,15 @@ import {
 
 type Props = {
   player: PlayerFragmentFragment;
+  showSeasonalXP?: boolean;
 };
 
 const MAX_BIO_LENGTH = 240;
 
-export const PlayerTile: React.FC<Props> = ({ player }) => {
+export const PlayerTile: React.FC<Props> = ({
+  player,
+  showSeasonalXP = false,
+}) => {
   const tzDisplay = useMemo(() => getPlayerTimeZoneDisplay(player.timezone), [
     player.timezone,
   ]);
@@ -93,9 +97,13 @@ export const PlayerTile: React.FC<Props> = ({ player }) => {
                 </WrapItem>
               )}
               <WrapItem>
-                <MetaTag size="md">{`XP: ${Math.floor(
-                  player.season_xp,
-                )} (${Math.floor(player.total_xp)})`}</MetaTag>
+                <MetaTag size="md">
+                  {showSeasonalXP
+                    ? `XP: ${Math.floor(player.season_xp)} (${Math.floor(
+                        player.total_xp,
+                      )})`
+                    : `XP: ${Math.floor(player.total_xp)}`}
+                </MetaTag>
               </WrapItem>
             </Wrap>
             {tzDisplay?.timeZone ? (
